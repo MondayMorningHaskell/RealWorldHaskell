@@ -8,55 +8,87 @@ cabal-version: 1.12
 
 name:           RealWorldHaskell
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/RealWorldHaskell#readme>
-homepage:       https://github.com/githubuser/RealWorldHaskell#readme
-bug-reports:    https://github.com/githubuser/RealWorldHaskell/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2021 Author name here
+description:    Please see the README on GitHub at <https://github.com/MondayMorningHaskell/RealWorldHaskell#readme>
+homepage:       https://github.com/MondayMorningHaskell/RealWorldHaskell#readme
+bug-reports:    https://github.com/MondayMorningHaskell/RealWorldHaskell/issues
+author:         James Bowen
+maintainer:     james@mondaymorninghaskell.me
+copyright:      2021 James Bowen
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    ChangeLog.md
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/RealWorldHaskell
+  location: https://github.com/MondayMorningHaskell/RealWorldHaskell
 
 library
   exposed-modules:
-      Lib
+      BasicSchema
+      BasicServer
+      Cache
+      CacheServer
+      Database
+      SchemaEsq
+      DatabaseEsq
+      ServerEsq
   other-modules:
       Paths_RealWorldHaskell
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , aeson
+    , bytestring
+    , esqueleto
+    , hedis
+    , monad-logger
+    , mtl
+    , persistent
+    , persistent-postgresql
+    , persistent-template
+    , servant
+    , servant-client
+    , servant-server
+    , text
+    , time
+    , transformers
+    , warp
   default-language: Haskell2010
 
-executable RealWorldHaskell-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_RealWorldHaskell
-  hs-source-dirs:
-      app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      RealWorldHaskell
-    , base >=4.7 && <5
-  default-language: Haskell2010
+executable migrate-db
+  hs-source-dirs:      app
+  main-is:             MigrateDB.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , RealWorldHaskell
+  default-language:    Haskell2010
 
-test-suite RealWorldHaskell-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
+executable migrate-db-esq
+  hs-source-dirs:      app
+  main-is:             MigrateDBEsq.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , RealWorldHaskell
+  default-language:    Haskell2010
+
+test-suite api-tests
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
   other-modules:
-      Paths_RealWorldHaskell
-  hs-source-dirs:
-      test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    TestUtils
+  main-is:             APITests.hs
   build-depends:
-      RealWorldHaskell
-    , base >=4.7 && <5
-  default-language: Haskell2010
+    base
+    , hspec
+    , http-client
+    , http-client-tls
+    , monad-logger
+    , mtl
+    , servant-client
+    , persistent-postgresql
+    , RealWorldHaskell
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
