@@ -11,7 +11,7 @@ import Servant.Client (ClientEnv(..), parseBaseUrl)
 import CacheServer (runServer)
 import Cache (RedisInfo, localRedisInfo)
 import Database (PGInfo, localConnString)
-import Schema (migrateAll)
+import BasicSchema (migrateAll)
 
 setupTests :: IO (PGInfo, RedisInfo, ClientEnv, ThreadId)
 setupTests = do

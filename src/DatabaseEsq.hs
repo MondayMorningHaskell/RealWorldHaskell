@@ -22,7 +22,7 @@ import           SchemaEsq
 type PGInfo = ConnectionString
 
 localConnString :: PGInfo
-localConnString = "host=127.0.0.1 port=5432 user=postgres dbname=postgres"
+localConnString = "host=127.0.0.1 port=5432 user=postgres dbname=postgres password=postgres"
 
 logFilter :: a -> LogLevel -> Bool
 logFilter _ LevelError     = True
@@ -74,7 +74,7 @@ fetchRecentArticlesPG connString = runAction connString fetchAction
     fetchAction = select . from $ \(users `InnerJoin` articles) -> do
       on (users ^. UserId ==. articles ^. ArticleAuthorId)
       orderBy [desc (articles ^. ArticlePublishedTime)]
-      limit 10
+      limit 3
       return (users, articles)
 
 createArticlePG :: PGInfo -> Article -> IO Int64

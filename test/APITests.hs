@@ -13,7 +13,7 @@ import Test.Hspec
 import Cache
 import CacheServer (fetchUserClient, createUserClient)
 import Database
-import Schema (User(..))
+import BasicSchema (User(..))
 import TestUtils (setupTests)
 
 main :: IO ()

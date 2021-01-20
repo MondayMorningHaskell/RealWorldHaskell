@@ -1,0 +1,2 @@
+:seti -XOverloadedStrings
+:set -package RealWorldHaskell

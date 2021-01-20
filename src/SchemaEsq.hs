@@ -16,6 +16,7 @@ module SchemaEsq where
 import           Data.Aeson
 import           Data.Aeson.Types
 import           Data.Time (UTCTime)
+import           Data.Time.Clock.POSIX (posixSecondsToUTCTime, utcTimeToPOSIXSeconds)
 import           Database.Persist (Entity(..), Entity)
 import           Database.Persist.Sql (fromSqlKey, toSqlKey)
 import qualified Database.Persist.TH as PTH
@@ -87,7 +88,7 @@ articlePairs :: Article -> [Pair]
 articlePairs article =
   [ "title" .= articleTitle article
   , "body" .= articleBody article
-  , "publishedTime" .= articlePublishedTime article
+  , "publishedTime" .= utcTimeToPOSIXSeconds (articlePublishedTime article)
   , "authorId" .= fromSqlKey (articleAuthorId article)
   ]
 
@@ -109,6 +110,6 @@ parseArticle o = do
   return Article
     { articleTitle = aTitle
     , articleBody = aBody
-    , articlePublishedTime = aPublishedTime
+    , articlePublishedTime = posixSecondsToUTCTime aPublishedTime
     , articleAuthorId = toSqlKey aAuthorId
     }
