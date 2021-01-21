@@ -22,7 +22,7 @@ On Windows and MacOS, you should be able to use the [downloads here](https://pos
 ### Redis
 
 Starting with [part 3](https://www.mmhaskell.com/real-world/redis), our server starts incorporating caching using
-[Redis](https://www.redis.io). You'll want to follow the [instructions](TODO) for installing it based on your operating
+[Redis](https://www.redis.io). You'll want to follow the [instructions](https://www.redis.io/topics/quickstart) for installing it based on your operating
 system.
 
 The two main functions you should be concerned with are running the server and the client CLI. With the server, you
@@ -198,7 +198,9 @@ to the root project directory and running the following command:
 >> docker-compose up
 ```
 
-Then, you need to go to the [stack.yaml](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/docker-compose.yml)
+You can observe the configurations in the [Docker Compose file](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/docker-compose.yaml).
+
+Then, you need to go to the [stack.yaml](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/stack.yaml)
 file and change the project settings to use Docker. You'll change the `docker.enable` flag to `true`:
 
 ```yaml
