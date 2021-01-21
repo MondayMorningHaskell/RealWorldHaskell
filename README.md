@@ -151,7 +151,7 @@ Could not find user with that ID
 
 ### [Part 3: Redis](https://www.mmhaskell.com/real-world/redis)
 
-The third part of the series discusses a library for using [Redis in Haskell](https://hackage.haskell.org/packages/hedis).
+The third part of the series discusses a library for using [Redis in Haskell](https://hackage.haskell.org/package/hedis).
 The code examples in the article can be seen in the [Cache Module](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/Cache.hs)
 and the [CacheServer module](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/CacheServer.hs),
 which has updates to the original server from part 2 with our caching functionality.
@@ -198,7 +198,7 @@ to the root project directory and running the following command:
 >> docker-compose up
 ```
 
-You can observe the configurations in the [Docker Compose file](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/docker-compose.yaml).
+You can observe the configurations in the [Docker Compose file](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/docker-compose.yml).
 
 Then, you need to go to the [stack.yaml](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/stack.yaml)
 file and change the project settings to use Docker. You'll change the `docker.enable` flag to `true`:
