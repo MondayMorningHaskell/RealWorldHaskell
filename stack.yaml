@@ -4,4 +4,4 @@ packages:
 - .
 
 docker:
-  enable: true
+  enable: false
